@@ -5,7 +5,7 @@ def main():
     print(GreatestPrimeFactor(number))
 
 def SmallestPrimeFactor(number):
-    for i in range(2, int(number)): #For faster iteration use the range (2, sqrt(number) + 1) (Why?)
+    for i in range(2, int(number)):
         if number % i == 0:
             return i
     else:
