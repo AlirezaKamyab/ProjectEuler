@@ -1,10 +1,11 @@
 #!/usr/bin/Python3
 
+from math import sqrt,floor
+
 def main():
     counter = 0
     for prime in PrimeGenerator():
         counter += 1
-        print("#{}: {}".format(counter, prime)) #Since it takes a little while, it is good to track the counter
         if counter == 10001:
             print("The Answer is", prime)
             break
@@ -12,7 +13,7 @@ def main():
 def isPrime(number):
     if number == 1:
         return False
-    for item in range(2, number):
+    for item in range(2, floor(sqrt(number)) + 1):
         if number % item == 0:
             return False
     else: return True
