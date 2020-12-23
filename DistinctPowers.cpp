@@ -1,24 +1,20 @@
 //Created on: Dec 21, 2020 by Alireza
 #include<iostream>
 #include<vector>
+#include<set>
 #include<cmath>
-#include<algorithm>
 using namespace std;
 
 bool isPrime(int number);
 vector<int> PrimeDivisions(int number, int power);
-bool isExisted(vector<int> main, vector<vector<int>> list);
 
 int main(int argc, char ** argv){
-	vector<vector<int>> answers;
+	set<vector<int>> answers;
 	for(int i = 2; i <= 100; ++i){
 		for(int j = 2; j <= 100; ++j){
 			vector<int> item = PrimeDivisions(i, j);
-			if(isExisted(item, answers) == false){
-				answers.push_back(item);
-			}
+			answers.insert(item);
 		}
-		cout << "base " << i << " calculated" << endl;
 	}
 
 	cout << "The answer is " << answers.size() << endl;
@@ -54,27 +50,4 @@ bool isPrime(int number){
 		}
 	}
 	return true;
-}
-
-bool isExisted(vector<int> main, vector<vector<int>> list){
-	for(vector<int> item : list){
-		if(item.size() != main.size()) continue;
-		for(int number : main){
-			auto res = find(item.begin(),item.end(), number);
-			if(res != item.end()){
-				item.erase(res);
-				continue;
-			}
-			else{
-				break;
-			}
-		}
-		if(item.size() == 0){
-			return true;
-		}
-		else{
-			continue;
-		}
-	}
-	return false;
 }
