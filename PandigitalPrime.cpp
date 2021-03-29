@@ -3,7 +3,6 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 /// <summary>
@@ -16,6 +15,12 @@ int convertToNumber(vector<int>& vec);
 /// </summary>
 bool isPrime(int number);
 
+/// <summary>
+/// Takes an array of integers with size of p and takes a vector of vector of integers
+/// and adds permutations to that
+/// </summary>
+void permutations(vector<int> arr, int p, int r, vector<vector<int>>& result);
+
 int main() {
 	/// <summary>
 	/// pandigital of 1 and 2 and 3 and 5 and 6 and 8 and 9 are not prime since
@@ -23,16 +28,37 @@ int main() {
 	/// So 4 and 7-digits are left to be prime
 	/// </summary>
 	vector<int> numbers = { 1,2,3,4,5,6,7 };
+	vector<vector<int>> allPermutaion;
+	permutations(numbers, 0, numbers.size() - 1, allPermutaion);
+
 	int max = 0;
-	do {
-		int convertedNumber = convertToNumber(numbers);
+	int counter = 0;
+	for (vector<int> i : allPermutaion) {
+		int convertedNumber = convertToNumber(i);
 		if (isPrime(convertedNumber) && convertedNumber > max) {
 			max = convertedNumber;
 		}
-	} while (next_permutation(numbers.begin(), numbers.end()));
-
+	}
 	cout << max << endl;
 	return 0;
+}
+
+void permutations(vector<int> arr, int p, int r, vector<vector<int>>& result) {
+	if (p == r) {
+		result.push_back(arr);
+	}
+
+	for (int i = p; i <= r; i++) {
+		int temp = arr[p];
+		arr[p] = arr[i];
+		arr[i] = temp;
+
+		permutations(arr, p + 1, r, result);
+
+		temp = arr[p];
+		arr[p] = arr[i];
+		arr[i] = temp;
+	}
 }
 
 int convertToNumber(vector<int>& vec) {
