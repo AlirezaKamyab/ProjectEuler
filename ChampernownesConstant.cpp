@@ -1,5 +1,5 @@
 // This file is written by Alireza Kamyab 3/29/2021
-// Question is projecteuler.com/problem=40
+// Question is projecteuler.net/problem=40
 #include <iostream>
 #include <cmath>
 using namespace std;
