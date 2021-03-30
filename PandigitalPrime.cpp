@@ -47,7 +47,7 @@ void permutations(vector<int> arr, int p, int r, vector<vector<int>>& result) {
 	if (p == r) {
 		result.push_back(arr);
 	}
-
+	
 	for (int i = p; i <= r; i++) {
 		int temp = arr[p];
 		arr[p] = arr[i];
