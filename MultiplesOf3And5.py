@@ -1,13 +1,12 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+
+import math
 
 def main():
-    counter = 1
-    answer = 0
-    while counter < 1000:
-        if counter%3 == 0 or counter % 5 == 0:
-            answer += counter
-        counter += 1
-        
-    print("The answer is", answer)
+    limit = 999
+    print(sumOfMultiples(3, limit) + sumOfMultiples(5, limit) - sumOfMultiples(15, limit))
+
+def sumOfMultiples(n, max):
+    return n * (math.floor(max / n) * (math.floor(max / n) + 1)) / 2
 
 if __name__ == "__main__": main()
