@@ -1,4 +1,4 @@
-#!/usr/bin/Python3
+#!/usr/bin/env python3
 
 from math import sqrt,floor
 
@@ -11,12 +11,22 @@ def main():
             break
 
 def isPrime(number):
-    if number == 1:
-        return False
-    for item in range(2, floor(sqrt(number)) + 1):
-        if number % item == 0:
-            return False
-    else: return True
+    if number <= 1 : return False
+    if number < 4 : return True
+    if number % 2 == 0 : return False
+    if number < 9 : return True
+    if number % 3 == 0 : return False
+
+    k = 1
+    limit = 0
+
+    while limit * limit <= number :
+        limit = k * 6
+        if number % (limit + 1) == 0 : return False
+        if number % (limit - 1) == 0 : return False
+        k += 1
+    
+    return True
     
 def PrimeGenerator(): #Generates prime number infinitely unless, it is stopped out of the function
     counter = 1
