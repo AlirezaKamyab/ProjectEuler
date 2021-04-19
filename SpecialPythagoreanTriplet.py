@@ -1,23 +1,37 @@
-#!/usr/bin/python3
-from math import sqrt
+#!/usr/bin/env python3
+
+from math import sqrt, ceil
 
 def main():
-    print('The answer is',GetABC())
+    sum = 1000
+    print(multipleOfPythagorean(sum))
 
-def isPythagorean(a,b,c):
-    if c ** 2 == a**2 + b ** 2:
-        return True
-    else:
-        return False
+def multipleOfPythagorean(sum):
+    limit = ceil(sqrt(sum)) - 1
     
-def GetABC():
-    c = 0
-    for a in range(1, 1001):
-        for b in range(1, 1001):
-            if a + b > 1000: break #To reduce processing time remove useless data 
-            c = int(sqrt(a **2 + b **2))
-            if a + b + c == 1000 and isPythagorean(a, b, c):
-                print(a,b,c)
-                return a*b*c
+    for m in range(2, limit):
+        if sum % (2 * m) == 0:
+            sm = sum / (2 * m)
+
+            while sm % 2 == 0: sm /= 2
+            k = m + 1 if m % 2 == 0 else m + 2
+            while k < 2 * m and k <= sm:
+                if sm % k == 0 and gcd(m, k) == 1:
+                    d = sm / k
+                    n = k - m
+                    a = (m ** 2 - n ** 2) * d
+                    b = 2 * m * n * d
+                    c = d * (m ** 2 + n ** 2)
+
+                    return a * b * c
+                k += 2
+
+def gcd(a, b):
+    if a == 1 or b == 1: return 1
+    if a % b == 0: return b
+    if b % a == 0: return a
+
+    if a > b: return gcd(a % b, b)
+    else: return gcd(a, b % a)
 
 if __name__ == "__main__": main()
