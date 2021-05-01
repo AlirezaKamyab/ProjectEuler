@@ -1,16 +1,20 @@
 #!/usr/bin/python3
 
 def main():
-    summ = 0
-    for number in FibonacciGenerator(1, 2):
-        if number % 2 == 0:
-            summ += number
-            
-    print("The answer is {}".format(summ))
-    
-def FibonacciGenerator(a,b):
-    while a < 4000000:
-        yield a
-        a,b = b, a + b
+    limit = 4000000
+    sum = 0
+    fibo = 0
+
+    counter = 1
+    while fibo < limit:
+        sum += fibo
+        fibo = even_fibonacci(counter)
+        counter += 1
+    print(sum)
+def even_fibonacci(n):
+    if n == 1: return 2
+    if n < 1: return 0
+
+    return 4 * (even_fibonacci(n - 1)) + even_fibonacci(n - 2)
 
 if __name__ == "__main__": main()
