@@ -2,42 +2,39 @@
 // Answer to the problem projecteuler.net/problem=44
 #include <iostream>
 #include <cmath>
-#include <cinttypes>
 using namespace std;
 
-uint64_t getPentagon(int n);
-bool isPentagon(int number);
+int pentagon(int n);
+bool isPentagon(int p);
 
-int main() {
-	uint64_t minDifference = 0;
-	for (int i = 1;; i++) {
-		uint64_t difference = 0;
-		uint64_t a = getPentagon(i);
-		for (int j = i + 1; j < 10000; j++) {
-			if (difference > minDifference && minDifference != 0) break;
-			uint64_t b = getPentagon(j);
-			difference = b - a;
-			if (isPentagon(a + b) && isPentagon(difference)) {
-				if (minDifference > difference || minDifference == 0) {
-					minDifference = difference;
-					cout << minDifference << endl;
+int main(){
+	int minDifference = -1;
+	for(int k = 1; k < 5000; k++){
+		int pk = pentagon(k);
+		for(int j = k - 1; j > 0; j--){
+			int pj = pentagon(j);
+			int pi = pk - pj;
+			if(isPentagon(pi) && isPentagon(pj - pi)){
+				if(minDifference > pj - pi || minDifference == -1){
+					minDifference = pj - pi;
 				}
 			}
 		}
 	}
+
+	cout << minDifference << endl;
 	return 0;
 }
 
-uint64_t getPentagon(int n) {
-	// Formula: n(3n-1) / 2
-	return (n * (3 * n - 1)) / 2;
+bool isPentagon(int p){
+	int delta = 1 + (4 * 3 * 2 * p);
+	if(delta < 0) return false;
+
+	float a =((1) + sqrt(delta)) / (2 * 3);
+	if(int(a) == a) return true;
+	else return false;
 }
 
-bool isPentagon(int number) {
-	// If number = p
-	// Formula: 3n^2 - n - 2p = 0
-	float delta = 1 + (24 * number);
-	float positiveRoot = (1 + sqrt(delta)) / 6;
-	if (positiveRoot != floor(positiveRoot)) return false;
-	return true;
+int pentagon(int n){
+	return (n * (3 * n - 1)) / 2;
 }
