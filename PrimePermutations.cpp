@@ -9,8 +9,8 @@ bool isPermutation(int a, int b);
 int search(int* arr, const int n, int value);
 
 int main(){
-    const int limit = 10000;
-    const int begin = 1488;
+    const int limit = 100000;
+    const int begin = 10000;
 
     for(int i = begin; i < limit; i++){
         if(isPrime(i) == false) continue;
