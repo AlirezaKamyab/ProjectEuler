@@ -51,6 +51,7 @@ bool isPermutation(int a, int b){
 
     for(int i = 0; i < aIndex; i++){
         int index = search(arrB, bIndex, arrA[i]);
+        
         if(index == -1) return false;
         else arrB[index] = -1;
     }
