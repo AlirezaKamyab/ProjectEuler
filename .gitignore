@@ -1,2 +1,5 @@
 *.exe
 .vscode
+
+#Problems to not to be tracked
+SuperPandigitalNumbers.cpp
