@@ -9,17 +9,16 @@ bool isPermutation(int a, int b);
 int search(int* arr, const int n, int value);
 
 int main(){
-    const int limit = 10000;
-    const int begin = 1488;
+    const int limit = 100000;
+    const int begin = 10000;
 
     for(int i = begin; i < limit; i++){
         if(isPrime(i) == false) continue;
 
-        for(int j = i + 1; j + (j - i) < limit; j += 1){
-            if(isPrime(j) == false) continue;
-            if(isPermutation(i,j) == false) continue;
-            
-            int diff = j - i;
+        for(int diff = 1; i + diff + diff < limit; diff++){
+            int j = i + diff;
+            if(!isPrime(j) || !isPermutation(i, j)) continue;
+
             int k = j + diff;
             if(isPrime(k) && isPermutation(k, j)){
                 printf("%d%d%d\n", i, j, k);
