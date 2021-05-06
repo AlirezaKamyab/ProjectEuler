@@ -30,7 +30,7 @@ int main(){
     }
     return 0;
 }
- 
+
 bool isPermutation(int a, int b){
     int aIndex = (int)log10(a) + 1; 
     int bIndex = (int)log10(b) + 1; 
