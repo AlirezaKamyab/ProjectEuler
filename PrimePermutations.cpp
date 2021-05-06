@@ -9,13 +9,13 @@ bool isPermutation(int a, int b);
 int search(int* arr, const int n, int value);
 
 int main(){
-    const int limit = 100000;
-    const int begin = 10000;
+    const int limit = 10000;
+    const int begin = 1488;
 
     for(int i = begin; i < limit; i++){
-        if(isPrime(i) == false) continue;
+        if(!isPrime(i)) continue;
 
-        for(int diff = 1; i + diff + diff < limit; diff++){
+        for(int diff = 2; i + diff + diff < limit; diff += 2){
             int j = i + diff;
             if(!isPrime(j) || !isPermutation(i, j)) continue;
 
