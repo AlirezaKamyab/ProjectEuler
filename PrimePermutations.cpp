@@ -15,11 +15,10 @@ int main(){
     for(int i = begin; i < limit; i++){
         if(isPrime(i) == false) continue;
 
-        for(int j = i + 1; j + (j - i) < limit; j += 1){
-            if(isPrime(j) == false) continue;
-            if(isPermutation(i,j) == false) continue;
-            
-            int diff = j - i;
+        for(int diff = 1; i + diff + diff < limit; diff++){
+            int j = i + diff;
+            if(!isPrime(j) || !isPermutation(i, j)) continue;
+
             int k = j + diff;
             if(isPrime(k) && isPermutation(k, j)){
                 printf("%d%d%d\n", i, j, k);
