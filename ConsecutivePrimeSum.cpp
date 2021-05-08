@@ -1,7 +1,8 @@
 // This file is written by AlirezaKamyab 5/7/2021
 // Answer to problem projecteuler.net/problem=50
-// Using https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Overview
+// Using https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes#Overview and Problem10 Overview
 #include <iostream>
+#include <cmath>
 #include <cstdint>
 using namespace std;
 
@@ -50,28 +51,29 @@ void generatePrimeConsecutive(bool* arr, int initiate, int limit, int& maxStage,
 }
 
 int nextPrime(bool* arr, int number, int limit){
-    for(int i = number + 1; true; i++){
-        if(i > limit) return limit + 1;
-        if (isPrime(arr, i)) return i;
+    for(int i = ((number - 1) / 2) + 1; true; i++){
+        if(2 * i + 1 > limit) return limit + 1;
+        if (isPrime(arr, 2 * i + 1)) return 2 * i + 1;
     }
 
     return 0; // Never is going to be called
 }
 
 bool isPrime(bool* arr, uint64_t number){
-    return arr[number];
+    if(number == 2) true;
+    if(number % 2 == 0) return false;
+    return !arr[(number - 1) / 2];
 }
 
 bool* primeArray(int limit){
-    bool* arr = new bool[limit + 1];
-    for(int i = 0; i < limit + 1; i++) arr[i] = true;
-    arr[0] = false;
-    arr[1] = false;
+    int sieveBound = (limit - 1) / 2;
+    int crossLimit = (floor(sqrt(limit)) - 1) / 2;
+    bool* arr = new bool[sieveBound] {0};
 
-    for(int i = 2; i * i <= limit; i++){
-        if (arr[i] == false) continue;
-        for(int j = i * i; j <= limit; j += i){
-            arr[j] = false;
+    for(int i = 1; i <= crossLimit; i++){
+        if (arr[i] == true) continue;
+        for(int j = 2 * i * (i + 1); j <= sieveBound; j += 2 * i + 1){
+            arr[j] = true;
         }
     }
 
