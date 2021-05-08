@@ -1,27 +1,16 @@
 #!/usr/bin/python3
 
 def main():
-    MaxNumber = 100
-    SumSquare = SumOfSquares(MaxNumber)
-    SquareSum = SquareOfSums(MaxNumber)
+    number = 100
+    SumSquare = SumOfSquares(number)
+    SquareSum = SquareOfSums(number)
     print("The answer is {}".format(abs(SumSquare - SquareSum)))
 
-def SumOfSquares(MaxNumber = 100):
-    counter = 1
-    total = 0
-    while counter <= MaxNumber:
-        total += counter ** 2
-        counter += 1
-    else:
-        return total
+def SumOfSquares(number = 100):
+    return (number * (number + 1) * (2 * number + 1)) / 6
     
-def SquareOfSums(MaxNumber = 100):
-    counter = 0
-    total = 0
-    while counter <= MaxNumber:
-        total += counter
-        counter += 1
-    else:
-        return total ** 2
+def SquareOfSums(number = 100):
+    sums = (number * (number + 1)) / 2
+    return sums * sums
 
 if __name__ == "__main__": main()
