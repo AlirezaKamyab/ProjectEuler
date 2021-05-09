@@ -3,26 +3,28 @@ def main():
     LongestChain = 0
     answer = 0
     for number in range(500000,1000000):
-        count = CountCollatzChain(number)
-        print(number,'---', count)
+        count = countCollatzChain(number)
         if count > LongestChain:
             LongestChain = count
             answer = number
     else:
         print("The LongestChain is", LongestChain, 'produced by', answer)
 
-def Collatz(number):
-    if number % 2 == 0:
-        return number // 2
-    else:
-        return (number * 3) + 1
+memo = {}
+def countCollatzChain(n):
+    if n == 1:
+        return 1
+
+    if n in memo:
+        return memo[n]
     
-def CountCollatzChain(number):
-    counter = 0
-    while number != 1:
-        number = Collatz(number)
-        counter += 1
+    if n % 2 == 0:
+        result = 1 + countCollatzChain(n / 2)
+        memo[n] = result
+        return result
     else:
-        return counter + 1 #The actual number is not counted through the iteration so we added one in here
+        result = 1 + countCollatzChain(3 * n + 1)
+        memo[n] = result
+        return result
     
 if __name__ == '__main__': main()
