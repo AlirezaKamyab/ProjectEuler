@@ -5,40 +5,36 @@ using namespace std;
 
 bool isPrime(const int& number);
 int step(int number, const int& digit = 0);
-int minForEveryDigit(const int& digit);
+int minForEveryDigit();
 
 const int LIMIT = 10000000;
 const int MAX_COUNT = 8;
 
 int main() {
-    int min = LIMIT;
-    for(int i = 0; i <= 9 - MAX_COUNT; i++){
-        int result = minForEveryDigit(i);
-        min = (result < min)? result : min;
-    }
-
-    cout << min << endl;
+    int result = minForEveryDigit();
+    cout << result << endl;
     return 0;
 }
 
-int minForEveryDigit(const int& digit) {
+int minForEveryDigit() {
     for(int i = 0; i < LIMIT; i++) {
-        int s = step(i, digit);
+        int s = step(i, 1);
 
         if(s == 0) continue;
-        if(!isPrime(i)) continue;
 
-        int temp = i + s;
-        int min = i;
-        int primeCounter = 1;
+        int primeCounter = 0;
+        int temp = (isPrime(i - s) && s < i - s)? i - s : i; // If 56113 is found, can we start from 56001?
 
-        for(int j = 1; j <= 9 - digit; j++) {
+        int min = temp + (10 * s);
+
+        // If for instance we start from 56113 we have left 56001, so one iteration is completed else we iterate 10 times
+        for(int j = (temp == i)? 1 : 0; j <= 9; j++) {
             if(isPrime(temp)) {
+                min = (temp < min)? temp : min;
                 primeCounter++;
             }
             temp += s;
         }
-
         if(primeCounter == MAX_COUNT) {
             return min;
         }
