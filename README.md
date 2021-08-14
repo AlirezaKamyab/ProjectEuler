@@ -9,4 +9,4 @@ Solutions are proper and give the right answer. Like I said they are proper just
 I really like it if you can tell me if I did something wrong or there is any other way to find the solution
 * alirezakamyab19@gmail.com
 ## About `Projecteuler`
-It one of the best websites to challange your programming and algorithm designing ability. The website has more than 700 problems with different difficulties. *What I like about the website is its simplicity in design and convinience*. One of the good things about it is that not like the most websites designed for the same reason, it is completely free. 
+It is one of the best websites to challange your programming and algorithm designing ability. The website has more than 700 problems with different difficulties. *What I like about the website is its simplicity in design and convinience*. One of the good things about it is that not like the most websites designed for the same reason, it is completely free. 
