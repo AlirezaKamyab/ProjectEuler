@@ -11,7 +11,7 @@ int AllRightTriangles(int perimeter);
 int main() {
 	int max_solutions = 0;
 	int max_perimeter = 1;
-	for (int i = 1; i <= 10000; i++) {
+	for (int i = 1; i <= 1000; i++) {
 		int solution = AllRightTriangles(i);
 		if (solution > max_solutions) {
 			max_solutions = solution;
