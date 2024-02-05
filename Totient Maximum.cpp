@@ -16,7 +16,7 @@ int main() {
             max_n = i;
         }
     }
-
+    cout << arr[87109] << endl;
     cout << max_n << endl;
     return 0;
 }
@@ -24,10 +24,10 @@ int main() {
 void generate_phi(int* arr, const int& limit) {
     for(int i = 0; i < limit; i++) arr[i] = i;
 
-    for(int i = 2; i * i <= limit; i++) {
+    for(int i = 2; i < limit; i++) {
         if(arr[i] == i) arr[i] = i - 1;
         else continue;
-        for(int j = 2 * i; j <= limit; j += i) {
+        for(int j = 2 * i; j < limit; j += i) {
             arr[j] = arr[j] - arr[j] / i;
         }
     }
